@@ -1,0 +1,6 @@
+README.md
+.vscode
+desktop.ini
+*.docx
+netlify.toml
+.gitignore

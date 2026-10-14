@@ -1,0 +1,3 @@
+# Netlify: reine statische Seite, kein Build nötig.
+[build]
+  publish = "."

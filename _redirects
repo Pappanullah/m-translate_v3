@@ -1,0 +1,14 @@
+# Alte Webador-Adressen leiten auf die neuen Seiten weiter (gilt bei Netlify und Cloudflare).
+# Vor dem Go-Live mit den echten alten Adressen vergleichen.
+/informationen-maalom-t /informationen.html 301
+/lebenslauf-cv-lsyr-lth-ty /lebenslauf.html 301
+/infrastruktur-und-ausstattung-lmaad-t-o-lbny-ll-zm-lltrgm /infrastruktur-und-ausstattung.html 301
+/leistung-khdm-tn /leistungen.html 301
+/ki-uebersetzungen-und-menschliche-nachbearbeitung-post-editing-trgm-lthk-l-stn-aay-o-lmr-gaa /ki-uebersetzungen.html 301
+/preise-lasaa-r /preise.html 301
+/haeufig-gestellte-fragen-faq-as-l-mtd-ol /faq.html 301
+/galleriemaard-lsor /galerie.html 301
+/kontakt-l-ts-l-bn /kontakt.html 301
+/impressum-lbsm-lk-nony /impressum.html 301
+/allgemeine-geschaeftsbedingungen-agb-lshrot-o-lahk-m-laa-m /agb.html 301
+/datenschutzerklaerung-sy-s-lkhsosy /datenschutz.html 301
