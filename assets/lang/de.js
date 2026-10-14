@@ -31,7 +31,7 @@ window.I18N.de = {
  "c.mobile": "Mobil",
  "c.email": "E-Mail",
  "c.hours": "Erreichbarkeit",
- "site.hours": "Montag bis Freitag, 8 bis 18 Uhr",
+ "site.hours": "Montag bis Freitag, 8 bis 20 Uhr",
  "form.ok": "Danke, die Nachricht ist angekommen. Die Antwort kommt per E-Mail oder Telefon.",
  "form.err": "Das Senden hat nicht geklappt. Bitte direkt per E-Mail schreiben oder anrufen.",
  "form.choose": "Bitte wählen",

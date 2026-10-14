@@ -31,7 +31,7 @@ window.I18N.en = {
  "c.mobile": "Mobile",
  "c.email": "Email",
  "c.hours": "Availability",
- "site.hours": "Monday to Friday, 8 am to 6 pm",
+ "site.hours": "Monday to Friday, 8 am to 8 pm",
  "form.ok": "Thank you, your message has arrived. You will get a reply by email or phone.",
  "form.err": "Sending failed. Please email directly or call.",
  "form.choose": "Please choose",
