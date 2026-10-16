@@ -103,9 +103,18 @@
     el.innerHTML = S.gallery.map(g => `<figure><img${g.fit === 'contain' ? ' class="contain"' : ''} src="${esc(g.src)}" alt="${esc(de(g.key))}" data-i18n-attr="alt:${g.key}" loading="lazy" decoding="async">${tx('figcaption', g.key)}</figure>`).join('');
   });
   $$('[data-prices]').forEach(box => {
-    const rows = (S.prices || []).map(p => `<tr><th scope="row">${tx('span', `price.${p.id}.t`)}${de(`price.${p.id}.n`) ? tx('small', `price.${p.id}.n`) : ''}</th><td>${tx('span', `price.${p.id}.p`)}</td></tr>`).join('');
-    if (!rows) { box.remove(); return; }
-    $('[data-ptable]', box).innerHTML = `<tbody>${rows}</tbody>`;
+    const g = S.prices || [];
+    if (!g.length) { box.remove(); return; }
+    $('[data-pgroups]', box).innerHTML = g.map(x => `<article class="pgroup">${tx('h3', `price.${x.id}.t`)}${de(`price.${x.id}.n`) ? tx('p', `price.${x.id}.n`, 'class="small"') : ''}<table class="ptable"><tbody>${x.rows.map(r => `<tr><th scope="row">${tx('span', `price.${x.id}.${r}.l`)}</th><td>${tx('span', `price.${x.id}.${r}.p`)}</td></tr>`).join('')}</tbody></table></article>`).join('');
+  });
+  const star = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>';
+  const stars = n => `<span class="stars" role="img" aria-label="${n} / 5">${star.repeat(Math.max(0, Math.min(5, n)))}</span>`;
+  $$('[data-reviews]').forEach(el => {
+    const R = S.reviews || [], sm = S.reviewSummary;
+    const cards = R.map(r => `<figure class="rcard">${stars(r.stars || 5)}<blockquote lang="${esc(r.lang || 'de')}" dir="auto">${esc(r.text)}</blockquote><figcaption><b>${esc(r.name)}</b>${r.when ? ' – ' + esc(r.when) : ''}<br>${tx('span', 'rev.src', 'class="small"')}</figcaption></figure>`).join('');
+    el.innerHTML = (sm ? `<p class="rsum">${stars(5)} <b>${esc(sm.rating)} / 5</b> (${esc(sm.count)})</p>` : '')
+      + (cards ? `<div class="rgrid">${cards}</div>` : tx('p', 'rev.p'))
+      + `<p><a class="btn ghost" target="_blank" rel="noopener" href="${esc(S.reviewsUrl)}">${tx('span', 'rev.btn')}</a></p>`;
   });
   $$('[data-map]').forEach(el => {
     el.className = 'map' + (el.hasAttribute('data-wide') ? ' wide' : '');
@@ -207,7 +216,7 @@
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
   /* ---------- Einblenden beim Scrollen ---------- */
-  const targets = $$('.hero .wrap > *, .page-head .wrap > *, .sec .wrap > *, .svc, .row, .steps li, .gallery figure, .lsteps li, .faq details, .chips li');
+  const targets = $$('.hero .wrap > *, .page-head .wrap > *, .sec .wrap > *, .svc, .row, .steps li, .gallery figure, .lsteps li, .faq details, .chips li, .pgroup, .rcard, .tl li, .cv-grid > div');
   targets.forEach(el => {
     el.classList.add('reveal');
     const idx = [...el.parentElement.children].indexOf(el);

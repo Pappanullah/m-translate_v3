@@ -11,8 +11,13 @@ window.SITE = {
   address: { street: 'Casalgasse 47a/1', zip: '8041', city: 'Graz', country: 'Österreich' },
 
   // Karte (lädt erst nach Klick des Besuchers, DSGVO). mapEmbed = Adresse aus Google Maps: Teilen > Karte einbetten > nur die URL aus src="..." kopieren
-  mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2685.783857508491!2d15.464500076843403!3d47.04250077914838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476e73775c000001%3A0x6b63d09a52864c3c!2sCasalgasse%2047a%2C%208041%20Graz!5e0!3m2!1sde!2sat!4v1710000000000!5m2!1sde!2sat',
-  mapLink: 'https://www.google.com/maps/search/?api=1&query=Casalgasse+47a%2F1%2C+8041+Graz',
+  mapEmbed: 'https://www.google.com/maps?q=47.0355806,15.4575472&z=17&hl=de&output=embed',
+  mapLink: 'https://www.google.at/maps/place/%C3%9Cbersetzungsb%C3%BCro+Arabisch+in+Graz+%5BMUARRAWI+TRANSLATE%5D+%D9%85%D9%83%D8%AA%D8%A8+%D9%85%D8%B9%D8%B1%D8%A7%D9%88%D9%8A+%D9%84%D9%84%D8%AA%D8%B1%D8%AC%D9%85%D8%A9+%D8%A7%D9%84%D9%85%D8%AD%D9%84%D9%81%D8%A9+%D9%81%D9%8A+%D8%BA%D8%B1%D8%A7%D8%AA%D8%B3-+%D9%85%D8%AA%D8%B1%D8%AC%D9%85+%D9%85%D8%AD%D9%84%D9%81+%D8%B9%D8%B1%D8%A8%D9%8A+%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%E2%80%AD/@47.0355806,15.4549723,571m/data=!3m2!1e3!4b1!4m6!3m5!1s0x476e4b37d2f36f57:0x209d2f96ffd2eb4f!8m2!3d47.0355806!4d15.4575472!16s%2Fg%2F11v66r_p2q',
+  reviewsUrl: 'https://www.google.at/maps/place/%C3%9Cbersetzungsb%C3%BCro+Arabisch+in+Graz+%5BMUARRAWI+TRANSLATE%5D+%D9%85%D9%83%D8%AA%D8%A8+%D9%85%D8%B9%D8%B1%D8%A7%D9%88%D9%8A+%D9%84%D9%84%D8%AA%D8%B1%D8%AC%D9%85%D8%A9+%D8%A7%D9%84%D9%85%D8%AD%D9%84%D9%81%D8%A9+%D9%81%D9%8A+%D8%BA%D8%B1%D8%A7%D8%AA%D8%B3-+%D9%85%D8%AA%D8%B1%D8%AC%D9%85+%D9%85%D8%AD%D9%84%D9%81+%D8%B9%D8%B1%D8%A8%D9%8A+%D8%A3%D9%84%D9%85%D8%A7%D9%86%D9%8A%E2%80%AD/@47.0355806,15.4549723,571m/data=!3m2!1e3!4b1!4m6!3m5!1s0x476e4b37d2f36f57:0x209d2f96ffd2eb4f!8m2!3d47.0355806!4d15.4575472!16s%2Fg%2F11v66r_p2q',
+  // Google-Bewertungen: Texte aus Google Maps kopieren und hier eintragen (nur echte Bewertungen!). Leer lassen = nur Link zu Google.
+  // Beispiel: { name: 'Vorname N.', stars: 5, text: 'Text der Bewertung', lang: 'de', when: 'vor 2 Monaten' },
+  reviews: [],
+  // Optional: reviewSummary: { rating: '5,0', count: 12 },
   gisa: '34800881',
   uid: 'ATU80949814',
 
@@ -49,12 +54,13 @@ window.SITE = {
     { href: 'kontakt.html', key: 'nav.contact', cta: true }
   ],
 
-  // Richtpreise (Seite "Preise"). Leer lassen = keine Preistabelle, nur die Beschreibung.
-  // Pro Zeile: { id: 'urkunde' }. Die Texte stehen in den Sprachdateien (de.js, en.js, ar.js):
-  //   "price.urkunde.t": "Geburtsurkunde"       (Bezeichnung)
-  //   "price.urkunde.p": "ab 30 €"              (Preis)
-  //   "price.urkunde.n": "inkl. Beglaubigung"   (Hinweis, optional)
-  prices: [],
+  // Richtpreise (Seite "Preise"): Gruppen mit Zeilen. Texte: price.<gruppe>.t / .n und price.<gruppe>.<zeile>.l (Bezeichnung) / .p (Preis) in den Sprachdateien.
+    prices: [
+    { id: 'urkunde', rows: ['zeile', 'seite', 'auftrag'] },
+    { id: 'fach', rows: ['zeile', 'seite', 'auftrag'] },
+    { id: 'literatur', rows: ['zeile'] },
+    { id: 'eil', rows: ['heute', 'tag'] }
+  ],
 
   // Rechtliche Links in der Fußzeile
   legal: [

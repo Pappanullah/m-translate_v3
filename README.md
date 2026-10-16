@@ -55,3 +55,13 @@ Rechtstexte (Impressum, AGB, Datenschutz) bleiben bewusst nur Deutsch (`<main la
 - **Legalisierung:** Eigene Seite `legalisierung.html`.
 - **Alte Webador-Adressen:** Datei `_redirects` leitet sie auf die neuen Seiten um.
 - **Nicht veröffentlichen:** `.assetsignore` und `.gitignore` halten README, Word-Dateien und Editor-Dateien aus dem Internet heraus.
+
+## Stand 15. Oktober 2026
+
+- **Richtpreise:** Gruppen in `config.js` bei `prices`. Jede Gruppe hat Zeilen. Texte in den Sprachdateien: `price.<gruppe>.t` (Titel), `price.<gruppe>.n` (Hinweis), `price.<gruppe>.<zeile>.l` (Bezeichnung), `price.<gruppe>.<zeile>.p` (Preis). Neue Zeile: Name in `rows` ergänzen und die zwei Texte in `de.js`, `en.js`, `ar.js` anlegen.
+- **Google-Bewertungen:** In `config.js` bei `reviews` echte Bewertungen eintragen (`name`, `stars`, `text`, `lang`, `when`). Solange die Liste leer ist, zeigt die Startseite nur den Link zu Google. Optional `reviewSummary: { rating: '5,0', count: 12 }`.
+- **Lebenslauf:** Einträge stehen in `lebenslauf.html` mit den Schlüsseln `cv.e1` bis `cv.e5` (Berufserfahrung) und `cv.d1` bis `cv.d4` (Ausbildung). Texte in den Sprachdateien.
+- **Legalisierung:** Text in `legalisierung.html` (deutsch) und unter `lg.` in `en.js` und `ar.js`.
+- **Karte:** Koordinaten in `config.js` bei `mapEmbed` (Adresse aus Google Maps, 47.0355806, 15.4575472).
+- **Strukturierte Daten:** In `index.html` stehen Öffnungszeiten Montag bis Freitag 08:00 bis 20:00. Ändert sich die Zeit in den Sprachdateien (`site.hours`), bitte auch dort anpassen.
+- **Vorschaubild:** `assets/images/og-image.jpg` (1200 mal 630) für Link-Vorschauen in WhatsApp, Facebook und Co.
