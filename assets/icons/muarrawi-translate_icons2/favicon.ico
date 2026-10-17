@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+          <rect width="1024" height="1024" fill="#F1E9DA"></rect>
+          <!-- Main Bridge-M with flowing Meem descender (#4A5A30) -->
+          <path d="M 224 700
+                   L 224 440
+                   A 144 144 0 0 1 512 440
+                   L 512 570
+                   M 512 440
+                   A 144 144 0 0 1 800 440
+                   L 800 660
+                   C 800 775 705 830 560 830" fill="none" stroke="#4A5A30" stroke-width="84" stroke-linecap="round" stroke-linejoin="round"></path>
+          <!-- Subtle Bridge Deck Arch beneath -->
+          <path d="M 310 700 Q 512 610 714 700" fill="none" stroke="#8E5A1E" stroke-width="44" stroke-linecap="round"></path>
+          <!-- Arabic Meem (م) Circular Loop Head at Central Keystone (#8E5A1E) -->
+          <circle cx="512" cy="300" r="66" fill="none" stroke="#8E5A1E" stroke-width="56"></circle>
+        </svg>

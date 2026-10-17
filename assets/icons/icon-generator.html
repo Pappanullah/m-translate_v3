@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Muarrawi Icon-Paket Generator</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #1e1c1a; color: #f4efe6; padding: 2rem; max-width: 800px; margin: 0 auto; }
+  button { background: #46572D; color: #fff; border: none; padding: 1rem 1.8rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; font-weight: bold; margin-right: 1rem; margin-bottom: 1rem; }
+  button:hover { background: #5a703a; }
+  .preview { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
+  .card { background: #2a2724; padding: 1rem; border-radius: 12px; text-align: center; }
+  canvas { max-width: 160px; height: auto; border-radius: 8px; border: 1px solid #444; }
+</style>
+</head>
+<body>
+  <h1>Muarrawi Translate – Lokaler Icon-Generator</h1>
+  <p>Erzeugt alle benötigten Dateien (100% gestochen scharf) direkt für deinen Ordner <code>assets/icons/</code>:</p>
+  
+  <button onclick="downloadAll()">Alle 8 Icon-Dateien automatisch herunterladen</button>
+  
+  <div class="preview" id="preview"></div>
+
+<script>
+const svgSymbolOnly = (bg, mainColor, diamondColor) => `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="2048" height="2048">
+  ${bg ? `<rect width="800" height="800" rx="140" fill="${bg}"/>` : ''}
+  <g transform="translate(0, 175)">
+    <polygon fill="${diamondColor}" points="408,71 431,94 408,117 385,94" />
+    <path fill="${mainColor}" fill-rule="evenodd" d="M 216 271 C 242 182, 286 122, 322 97 C 356 120, 386 150, 409 182 C 433 150, 463 120, 498 97 C 548 132, 588 205, 606 297 L 620 297 L 627 325 L 579 325 C 565 235, 534 166, 496 131 C 468 152, 444 180, 424 209 C 439 242, 445 274, 445 292 C 445 315, 428 326, 409 326 C 390 326, 373 315, 373 292 C 373 268, 381 241, 387 221 L 399 245 C 395 262, 393 277, 393 290 C 393 301, 400 307, 409 307 C 418 307, 424 301, 424 290 C 424 265, 412 228, 392 195 C 372 167, 349 144, 323 128 C 292 153, 260 202, 240 262 Z" />
+    <path fill="${mainColor}" fill-rule="evenodd" d="M 193 190 L 198 196 C 172 212, 165 242, 174 265 C 184 288, 214 294, 246 272 C 272 254, 294 226, 311 206 C 305 194, 304 179, 312 168 C 321 156, 340 156, 353 169 C 368 184, 372 212, 360 240 C 350 227, 336 226, 324 236 C 302 256, 276 292, 244 309 C 202 330, 152 315, 141 278 C 132 242, 154 202, 193 190 Z M 323 182 C 328 179, 337 183, 342 191 C 347 199, 346 207, 343 210 C 336 204, 328 197, 323 192 C 321 188, 321 184, 323 182 Z" />
+  </g>
+</svg>`;
+
+const svgWithText = (bg, mainColor, diamondColor) => `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="2048" height="2048">
+  ${bg ? `<rect width="800" height="800" fill="${bg}"/>` : ''}
+  <g transform="translate(0, 95)">
+    <polygon fill="${diamondColor}" points="408,71 431,94 408,117 385,94" />
+    <path fill="${mainColor}" fill-rule="evenodd" d="M 216 271 C 242 182, 286 122, 322 97 C 356 120, 386 150, 409 182 C 433 150, 463 120, 498 97 C 548 132, 588 205, 606 297 L 620 297 L 627 325 L 579 325 C 565 235, 534 166, 496 131 C 468 152, 444 180, 424 209 C 439 242, 445 274, 445 292 C 445 315, 428 326, 409 326 C 390 326, 373 315, 373 292 C 373 268, 381 241, 387 221 L 399 245 C 395 262, 393 277, 393 290 C 393 301, 400 307, 409 307 C 418 307, 424 301, 424 290 C 424 265, 412 228, 392 195 C 372 167, 349 144, 323 128 C 292 153, 260 202, 240 262 Z" />
+    <path fill="${mainColor}" fill-rule="evenodd" d="M 193 190 L 198 196 C 172 212, 165 242, 174 265 C 184 288, 214 294, 246 272 C 272 254, 294 226, 311 206 C 305 194, 304 179, 312 168 C 321 156, 340 156, 353 169 C 368 184, 372 212, 360 240 C 350 227, 336 226, 324 236 C 302 256, 276 292, 244 309 C 202 330, 152 315, 141 278 C 132 242, 154 202, 193 190 Z M 323 182 C 328 179, 337 183, 342 191 C 347 199, 346 207, 343 210 C 336 204, 328 197, 323 192 C 321 188, 321 184, 323 182 Z" />
+  </g>
+  <text x="405" y="540" fill="${mainColor}" font-family="Georgia, serif" font-weight="bold" font-size="62" letter-spacing="10" text-anchor="middle">MUARRAWI</text>
+  <text x="412" y="595" fill="${diamondColor}" font-family="sans-serif" font-weight="600" font-size="24" letter-spacing="18" text-anchor="middle">TRANSLATE</text>
+</svg>`;
+
+const files = [
+  { name: 'apple-touch-icon.png', size: 180, svg: svgSymbolOnly('#F1E9DA', '#46572D', '#8E541A') },
+  { name: 'favicon-96x96.png', size: 96, svg: svgSymbolOnly(null, '#46572D', '#8E541A') },
+  { name: 'web-app-manifest-192x192.png', size: 192, svg: svgSymbolOnly('#F1E9DA', '#46572D', '#8E541A') },
+  { name: 'web-app-manifest-512x512.png', size: 512, svg: svgSymbolOnly('#F1E9DA', '#46572D', '#8E541A') },
+  { name: 'muarrawi-logo-2048x2048.png', size: 2048, svg: svgSymbolOnly(null, '#46572D', '#8E541A') },
+  { name: 'muarrawi-logo-text-2048x2048.png', size: 2048, svg: svgWithText(null, '#46572D', '#8E541A') },
+  { name: 'muarrawi-logo-dark-2048x2048.png', size: 2048, svg: svgWithText(null, '#94AE6B', '#D99B4E') }
+];
+
+async function renderToCanvas(item) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const blob = new Blob([item.svg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = item.size;
+      canvas.height = item.size;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, item.size, item.size);
+      URL.revokeObjectURL(url);
+      resolve(canvas);
+    };
+    img.src = url;
+  });
+}
+
+// Erstellt eine echte binäre .ico Datei (mit eingebettetem 48x48 PNG)
+async function createIcoFile(svgStr) {
+  const canvas = await renderToCanvas({ size: 48, svg: svgStr });
+  const pngBlob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+  const pngBuf = new Uint8Array(await pngBlob.arrayBuffer());
+  const ico = new Uint8Array(22 + pngBuf.length);
+  const view = new DataView(ico.buffer);
+  view.setUint16(0, 0, true);
+  view.setUint16(2, 1, true);
+  view.setUint16(4, 1, true);
+  ico[6] = 48; ico[7] = 48; ico[8] = 0; ico[9] = 0;
+  view.setUint16(10, 1, true);
+  view.setUint16(12, 32, true);
+  view.setUint32(14, pngBuf.length, true);
+  view.setUint32(18, 22, true);
+  ico.set(pngBuf, 22);
+  return new Blob([ico], { type: 'image/x-icon' });
+}
+
+async function initPreview() {
+  const container = document.getElementById('preview');
+  for (const f of files) {
+    const c = await renderToCanvas(f);
+    f.canvas = c;
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `<p><strong>${f.name}</strong><br><small>${f.size}x${f.size}px</small></p>`;
+    div.prepend(c);
+    container.appendChild(div);
+  }
+}
+
+async function downloadAll() {
+  for (const f of files) {
+    f.canvas.toBlob((blob) => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = f.name;
+      a.click();
+    }, 'image/png');
+    await new Promise(r => setTimeout(r, 250));
+  }
+  const icoBlob = await createIcoFile(svgSymbolOnly(null, '#46572D', '#8E541A'));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(icoBlob);
+  a.download = 'favicon.ico';
+  a.click();
+}
+
+initPreview();
+</script>
+</body>
+</html>

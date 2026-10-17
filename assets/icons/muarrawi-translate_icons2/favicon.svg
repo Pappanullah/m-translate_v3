@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: transparent; }
+      .main-mark { fill: #4A5A30; }
+      .accent-diamond { fill: #8E5A1E; }
+      .wordmark-main {
+        fill: #4A5A30;
+        font-family: 'Cinzel', 'Trajan Pro', ' Marcellus', 'Georgia', serif;
+        font-size: 92px;
+        font-weight: 700;
+        letter-spacing: 6px;
+        text-anchor: middle;
+      }
+      .wordmark-sub {
+        fill: #4A5A30;
+        font-family: 'Montserrat', 'Lato', 'Helvetica Neue', sans-serif;
+        font-size: 34px;
+        font-weight: 500;
+        letter-spacing: 14px;
+        text-anchor: middle;
+      }
+      @media (prefers-color-scheme: dark) {
+        .main-mark, .wordmark-main, .wordmark-sub { fill: #F1E9DA; }
+        .accent-diamond { fill: #C88A3E; }
+      }
+    </style>
+  </defs>
+
+  <!-- Optionaler Hintergrund (bei Bedarf fill="#F1E9DA" bzw. "#181D12" setzen) -->
+  <rect class="bg" width="900" height="720" />
+
+  <!-- LOGO ICON (zentriert) -->
+  <g transform="translate(36, 20)">
+    <!-- Antike Messing-Raute -->
+    <polygon class="accent-diamond" points="424,62 450,88 424,114 398,88" />
+
+    <!-- Arabisches Meem (م) Schwung -->
+    <path class="main-mark" d="
+      M 182,190
+      C 105,212 92,332 195,332
+      C 262,332 292,262 328,238
+      C 344,228 358,232 368,244
+      L 378,220
+      C 382,196 362,158 336,158
+      C 312,158 302,188 310,208
+      C 272,232 246,294 195,296
+      C 138,298 134,224 186,196
+      Z
+      M 332,182
+      C 346,182 356,196 352,208
+      C 342,204 330,198 328,190
+      C 327,185 329,182 332,182
+      Z
+    " />
+
+    <!-- M-Brückenbogen -->
+    <path class="main-mark" d="
+      M 206,278
+      C 226,204 268,128 326,88
+      C 366,112 398,144 424,178
+      C 452,144 484,112 524,88
+      C 596,138 632,226 646,312
+      L 662,312
+      L 670,340
+      L 616,340
+      C 606,246 574,166 520,124
+      C 488,146 460,174 440,204
+      C 456,238 466,272 464,298
+      C 462,324 444,340 424,340
+      C 404,340 386,324 384,298
+      C 382,276 390,248 400,224
+      L 414,246
+      C 408,266 406,284 408,296
+      C 410,308 416,314 424,314
+      C 432,314 438,308 440,296
+      C 442,274 430,236 408,200
+      C 386,166 358,140 328,122
+      C 282,158 250,214 234,268
+      Z
+    " />
+  </g>
+
+  <!-- HAUPTTEXT: MUARRAWI -->
+  <text x="455" y="490" class="wordmark-main">MUARRAWI</text>
+
+  <!-- SUBTEXT: TRANSLATE -->
+  <text x="460" y="565" class="wordmark-sub">TRANSLATE</text>
+</svg>
